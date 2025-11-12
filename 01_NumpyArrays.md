@@ -13,7 +13,7 @@ jupyter:
     name: python3
 ---
 
-<!-- #region -->
+<!-- #region editable=true slideshow={"slide_type": ""} -->
 # Numpy Arrays
 11/11/2025
 
