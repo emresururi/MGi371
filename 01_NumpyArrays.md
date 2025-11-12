@@ -1,22 +1,22 @@
 ---
-jupyter:
-  jupytext:
-    formats: ipynb,md
-    text_representation:
-      extension: .md
-      format_name: markdown
-      format_version: '1.3'
-      jupytext_version: 1.18.1
-  kernelspec:
-    display_name: Python 3 (ipykernel)
-    language: python
-    name: python3
+jupytext:
+  cell_metadata_filter: all
+  formats: ipynb,md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.18.1
+kernelspec:
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
 ---
 
-<!-- #region editable=true slideshow={"slide_type": ""} -->
 # Numpy Arrays
 11/11/2025
 
++++
 
 ## Introduction
 In the universe, every interaction we have thus far observed belongs to one of the four fundamental interactions:
@@ -29,7 +29,6 @@ In the universe, every interaction we have thus far observed belongs to one of t
 Weak and strong interactions take place in the subatomic domains while gratvitational and electromagnetic interactions dominate the macroscopic universe.
 
 But when we come to the bottom of it, an interaction is nothing but a manifestation of its corresponding force which either pulls or pushes the participating objects.
-<!-- #endregion -->
 
 ## Modelling and Representation
 
@@ -85,7 +84,6 @@ $$R r = r'$$
 
 Let's see if we can further develop this equation for dealing with it on a computer.
 
-
 ## Multiplication of a matrix with a vector
 
 From basic linear algebra, we know that, there are a variety of vector and matrix (+ tensor) products, most notably:
@@ -114,7 +112,6 @@ Since the number of the columns of the first matrix ($n$) must match with the nu
 $$R=\begin{pmatrix}a&b\\c&d\end{pmatrix}_{(2\times2)}$$
 
 where $a,b,c,d$ are the coefficients (some numbers) that make up our matrix.
-
 
 ### Derivation of the coefficients
 Explicitly writing our equation:
@@ -153,7 +150,6 @@ So we can now write our "90<sup>o</sup> ccw rotator operator $R$" in full form:
 
 $$R=\begin{bmatrix}0&-1\\1&0\end{bmatrix}$$
 
-
 #### Side note: Classification of sets of linear equations
 
 In our example, we had 4 unknowns ($a,b,c,d$) and thus needed 4 (linearly independent) equations:
@@ -175,11 +171,13 @@ If we call the number of variables ("unknowns") as $m$, and the number of linear
 
 In physics & materials science, we almost always deal with overdetermined systems as each measurement yields a new equation! But luckily we have the proper tools to deal with it (and actually, as the number of measurements (/equations) increase, we get better and better estimations!)
 
-
 ## Introducing the matrices to computer with NumPy
 NumPy library holds the essential objects and methods for dealing with matrices and arrays. Although it has been -in my opinion- superceeded by the JAX library, we will still begin from numpy as it is straight-forward to switch to JAX from numpy.
 
-```python
+```{code-cell} ipython3
+:lines_to_next_cell: 2
+:trusted: true
+
 # Import the numpy library -- "np" is the conventional alias
 import numpy as np
 
@@ -188,11 +186,28 @@ import numpy as np
 r = np.array([1.,0])
 ```
 
-```python
+```{code-cell} ipython3
+:lines_to_next_cell: 0
+:trusted: true
+
 r
 ```
 
-```python
++++ {"lines_to_next_cell": 0}
+
+
+
+
+
+    array([1., 0.])
+
+
+
+
+```{code-cell} ipython3
+:lines_to_next_cell: 2
+:trusted: true
+
 # As you can see, r has been defined as a row vector (1x2)
 # instead of a column vector (2x1), but we will come to this
 # later.
@@ -201,11 +216,29 @@ r
 R = np.array([[0.,-1],[1,0]])
 ```
 
-```python
+```{code-cell} ipython3
+:lines_to_next_cell: 0
+:trusted: true
+
 R
 ```
 
-```python
++++ {"lines_to_next_cell": 0}
+
+
+
+
+
+    array([[ 0., -1.],
+           [ 1.,  0.]])
+
+
+
+
+```{code-cell} ipython3
+:lines_to_next_cell: 2
+:trusted: true
+
 # Multiplication of matrices with vectors is handled by the
 # np.dot() function (it is also the dot product for vectors as 
 # you can guess!)
@@ -213,34 +246,80 @@ R
 rp = np.dot(R,r)
 ```
 
-```python
+```{code-cell} ipython3
+:lines_to_next_cell: 0
+:trusted: true
+
 rp
 ```
 
+
+
+
+
+    array([0., 1.])
+
+
+
 So, we had [1,0] vector, acted on it with the $R$ operator (represented as a (2x2) matrix) and got [0,1] in return. Let's apply it once more:
 
-```python
+```{code-cell} ipython3
+:lines_to_next_cell: 0
+:trusted: true
+
 rpp = np.dot(R,rp)
 rpp
 ```
 
+
+
+
+
+    array([-1.,  0.])
+
+
+
 As expected! Let's do it a third time:
 
-```python
+```{code-cell} ipython3
+:lines_to_next_cell: 0
+:trusted: true
+
 rppp = np.dot(R,rpp)
 rppp
 ```
 
+
+
+
+
+    array([ 0., -1.])
+
+
+
 And if we apply it one final time, it should bring us to our original vector 
 $𝑟$ :
 
-```python
+```{code-cell} ipython3
+:lines_to_next_cell: 0
+:trusted: true
+
 np.dot(R,rppp)
 ```
 
+
+
+
+
+    array([1., 0.])
+
+
+
 Let's summarize and do all these operations with an arbitrary vector:
 
-```python
+```{code-cell} ipython3
+:trusted: true
+
 a = np.random.uniform(-5,5,2)
 print(a)
 
@@ -255,6 +334,14 @@ print(appp)
 
 print(R@appp)
 ```
+
+    [2.21474326 3.48379115]
+    [-3.48379115  2.21474326]
+    [-2.21474326 -3.48379115]
+    [ 3.48379115 -2.21474326]
+    [2.21474326 3.48379115]
+
++++
 
 **Question**   
 Given $r'$, how can you determine the previous position?
