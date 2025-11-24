@@ -195,14 +195,7 @@ r
 
 +++ {"lines_to_next_cell": 0}
 
-
-
-
-
     array([1., 0.])
-
-
-
 
 ```{code-cell} ipython3
 :lines_to_next_cell: 2
@@ -225,15 +218,8 @@ R
 
 +++ {"lines_to_next_cell": 0}
 
-
-
-
-
     array([[ 0., -1.],
            [ 1.,  0.]])
-
-
-
 
 ```{code-cell} ipython3
 :lines_to_next_cell: 2
@@ -253,10 +239,6 @@ rp = np.dot(R,r)
 rp
 ```
 
-
-
-
-
     array([0., 1.])
 
 
@@ -270,10 +252,6 @@ So, we had [1,0] vector, acted on it with the $R$ operator (represented as a (2x
 rpp = np.dot(R,rp)
 rpp
 ```
-
-
-
-
 
     array([-1.,  0.])
 
@@ -289,10 +267,6 @@ rppp = np.dot(R,rpp)
 rppp
 ```
 
-
-
-
-
     array([ 0., -1.])
 
 
@@ -306,10 +280,6 @@ $𝑟$ :
 
 np.dot(R,rppp)
 ```
-
-
-
-
 
     array([1., 0.])
 
