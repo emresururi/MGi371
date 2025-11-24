@@ -20,8 +20,7 @@ project:
   exports:
     - format: pdf
       template: lapreprint
-      articles: ["01_NumpyArrays.ipynb"]
-      articles: ["02_EquationSets.ipynb"]
+      articles: ["01_NumpyArrays.ipynb","02_EquationSets.ipynb"]
 	  #articles: ["01_NumpyArrays.ipynb", "Temps_n_Extras.ipynb"]
 site:
   template: book-theme
